@@ -1,10 +1,15 @@
 ---
 title: "Lornychi | Streamer & Vtuber";
 import "/src/styles/global.css";
-let images = Object.entries(
+
+let allImages = Object.entries(
   await import.meta.glob("/public/*{webp,jpg,jpeg}", { eager: true }),
-);
-images = images.sort(() => Math.random() - 0.5);
+).filter(([path]) => !path.includes("avatar") && !path.includes("banner"));
+
+// Shuffle images for the carousel and grid to be dynamic
+allImages = allImages.sort(() => Math.random() - 0.5);
+
+let carouselImages = allImages;
 ---
 
 <html lang="es">
@@ -30,228 +35,277 @@ images = images.sort(() => Math.random() - 0.5);
     <meta property="og:image" content="avatar.webp" />
   </head>
   <body
-    class="bg-gradient-to-b from-pink-900 via-black to-black text-white font-sans"
+    class="bg-black text-white font-sans selection:bg-pink-700 selection:text-white overflow-x-hidden"
   >
-    <main class="mx-[5%] py-10">
-      <!-- Hero -->
-      <section
-        class="bg-[url('/banner.webp')] bg-cover bg-fixed p-10 rounded-xl shadow-lg"
+    <div class="relative bg-black min-h-screen">
+      <section 
+        class="relative flex flex-col items-center justify-center w-full min-h-[500px] md:min-h-[600px] overflow-hidden"
       >
-        <div
-          class="flex flex-col items-center text-center bg-black/60 backdrop-blur-md p-6 rounded-xl"
-        >
+        <img
+          src="banner.webp"
+          alt="Banner de Lornychi"
+          class="absolute inset-0 w-full h-full object-cover object-center animate-fade-in"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+        
+        <div class="relative z-10 flex flex-col items-center text-center p-6 md:p-10">
           <img
             src="avatar.webp"
             alt="Avatar Lornychi"
-            class="w-40 h-40 rounded-full border-4 border-pink-500 shadow-lg"
+            class="w-40 h-40 md:w-52 md:h-52 rounded-full border-4 border-pink-500 ring-4 ring-pink-300/50 shadow-xl mb-6 animate-pop-in"
           />
-          <h1 class="text-4xl font-bold mt-4 text-pink-300 drop-shadow-md">
+          <h1 class="text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg tracking-wide">
             Lornychi
           </h1>
-          <p class="text-pink-100 italic mt-1 drop-shadow-md">
-            🇭🇳🌸¡Hola, soy Lornychi, Vtuber e ilustradora. Juegos de chill,
-            dibujos y más 💖<br />Hago directos de lunes a sábados💕
+          <p class="text-white italic mt-2 text-xl md:text-2xl max-w-2xl">
+            Vtuber & Ilustradora de Honduras 🇭🇳
+            <br />
+            ¡Bienvenidos a mi portafolio artístico!
           </p>
         </div>
       </section>
 
-      <!-- About -->
-      <section
-        class="mt-10 bg-pink-950/90 p-6 rounded-xl border border-pink-700"
-      >
-        <h2 class="text-2xl font-semibold text-pink-200 mb-4">Sobre mí</h2>
-        <ul class="list-disc pl-6 space-y-2">
-          <li>🌸 <strong>NO SOY FURRA :V</strong></li>
-          <li>🌸 Soy de Honduras.</li>
-          <li>🌸 Cumpleaños el 23 de mayo.</li>
-          <li>🌸 Tengo un gato que se llama Misho (El patrón).</li>
-          <li>🌸 Me encanta la comida, sin ella no vivo (literalmente xd).</li>
-          <li>
-            🌸 Mis juegos favoritos son: Halo, Red Dead Redemption 2, Minecraft,
-            Left 4 Dead, Elden Ring uwu.
-          </li>
-        </ul>
-      </section>
-
-      <!-- FAQ -->
-      <section class="mt-10 bg-black/70 p-6 rounded-xl border border-pink-700">
-        <h2 class="text-2xl font-semibold text-pink-200 mb-4">
-          ❓ Preguntas Frecuentes
-        </h2>
-        <ul class="list-disc pl-6 space-y-3 text-pink-100">
-          <li>
-            <strong>¿De qué son tus streams?</strong> Hago gameplays en vivo y converso
-            con el chat 💬🎮
-          </li>
-          <li>
-            <strong>¿Qué programa usas para dibujar?</strong> Utilizo <span
-              class="italic">MediBang Paint</span
-            > en versión móvil ✍️
-          </li>
-          <li>
-            <strong>¿Aceptas comisiones?</strong> ¡Sí! Siempre están abiertas. Puedes
-            contactarme vía Ko-fi o Discord 💖
-          </li>
-        </ul>
-      </section>
-
-      <!-- Streams -->
-      <section class="mt-10 bg-black/70 p-6 rounded-xl border border-pink-700">
-        <h2 class="text-2xl font-semibold text-pink-200 mb-4">
-          📅 Horario de Streams
-        </h2>
-        <ul class="text-pink-100 space-y-2">
-          <li>Lunes a Sábado: 4:00 PM – 8:00 o 9:00 PM (hora Honduras 🇭🇳)</li>
-          <li>Domingo: Descanso ☕</li>
-        </ul>
-      </section>
-
-      <!-- Especs PC -->
-      <section class="mt-10 bg-black/70 p-6 rounded-xl border border-pink-700">
-        <h2 class="text-2xl font-semibold text-pink-200 mb-4">
-          🎮 Setup de Streaming
-        </h2>
-        <ul class="list-disc pl-6 space-y-1">
-          <li>GPU: AMD RX 580</li>
-          <li>Placa Base: MSI B550-A Pro</li>
-          <li>CPU: AMD Ryzen 7 5700X 3.40 GHz</li>
-          <li>RAM: 16GB</li>
-          <li>SSD: 256 GB</li>
-          <li>HDD: 1 TB</li>
-          <li>Micrófono: Fifine Ampligame</li>
-          <li>Webcam: Logitech C525</li>
-          <li>Mouse: Razer DeathHadder Essential</li>
-        </ul>
-      </section>
-
-      <!-- Services -->
-      <section class="mt-10">
-        <h2 class="text-2xl font-semibold text-center text-pink-200 mb-6">
-          🌸 Redes y Plataformas
-        </h2>
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
-        >
-          <a
-            href="https://twitch.tv/lornychi"
-            target="_blank"
-            class="bg-pink-950/60 border border-pink-700 rounded-xl p-4 text-center hover:bg-pink-700/40 transition"
-          >
-            <div class="font-semibold text-white">Twitch</div>
-            <div class="text-pink-200 text-sm">Mírame jugar en vivo</div>
-          </a>
-          <a
-            href="https://discord.gg/8cNUnn6Jcr"
-            target="_blank"
-            class="bg-pink-950/60 border border-pink-700 rounded-xl p-4 text-center hover:bg-pink-700/40 transition"
-          >
-            <div class="font-semibold text-white">Discord</div>
-            <div class="text-pink-200 text-sm">Únete a la comunidad</div>
-          </a>
-          <a
-            href="https://ko-fi.com/lornychi"
-            target="_blank"
-            class="bg-pink-950/60 border border-pink-700 rounded-xl p-4 text-center hover:bg-pink-700/40 transition"
-          >
-            <div class="font-semibold text-white">Ko-fi</div>
-            <div class="text-pink-200 text-sm">Apóyame con un cafecito ☕</div>
-          </a>
-          <a
-            href="https://instagram.com/lornychi"
-            target="_blank"
-            class="bg-pink-950/60 border border-pink-700 rounded-xl p-4 text-center hover:bg-pink-700/40 transition"
-          >
-            <div class="font-semibold text-white">Instagram</div>
-            <div class="text-pink-200 text-sm">Arte y momentos</div>
-          </a>
-          <a
-            href="https://twitter.com/lornychi"
-            target="_blank"
-            class="bg-pink-950/60 border border-pink-700 rounded-xl p-4 text-center hover:bg-pink-700/40 transition"
-          >
-            <div class="font-semibold text-white">Twitter</div>
-            <div class="text-pink-200 text-sm">Pensamientos random</div>
-          </a>
-          <a
-            href="https://www.youtube.com/@lornychi"
-            target="_blank"
-            class="bg-pink-950/60 border border-pink-700 rounded-xl p-4 text-center hover:bg-pink-700/40 transition"
-          >
-            <div class="font-semibold text-white">YouTube</div>
-            <div class="text-pink-200 text-sm">
-              ¡Suscríbete para más contenido!
+      <main class="w-full max-w-7xl mx-auto p-4 md:p-8 -mt-16 relative z-20">
+        <section class="mb-16 animate-slide-up">
+          <h2 class="text-4xl font-bold text-center text-pink-200 mb-8">
+            ✨ Obras Destacadas ✨
+          </h2>
+          <div id="image-carousel" class="relative w-full max-w-4xl mx-auto rounded-xl shadow-2xl group overflow-hidden bg-gray-900 aspect-[4/3]">
+            <div class="flex h-full transition-transform duration-500 ease-in-out" id="carousel-inner">
+              {
+                carouselImages.map(([path, mod]) => (
+                  <div class="w-full h-full flex-shrink-0">
+                    <img
+                      src={path.replace("/public", "")}
+                      alt="Ilustración de Lornychi"
+                      class="w-full h-full object-contain object-center rounded-xl border border-pink-700"
+                      loading="lazy"
+                    />
+                  </div>
+                ))
+              }
             </div>
-          </a>
-          <div
-            class="bg-pink-950/60 border border-pink-700 rounded-xl p-4 text-center hover:bg-pink-700/40 transition cursor-pointer"
-            onclick="navigator.clipboard.writeText('Familymichy.playwn.co')"
-          >
-            <div class="font-semibold text-white">Minecraft Server</div>
-            <div class="text-pink-200 text-sm">
-              IP: Familymichy.playwn.co<br />Puerto: 25571
+            
+            <button id="prev-btn" class="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/75">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button id="next-btn" class="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/75">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="mt-12 text-center">
+            <button
+              id="view-all-btn"
+              class="inline-block bg-pink-700 text-white font-bold px-8 py-4 rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105"
+            >
+              🖼️ Ver todas las obras
+            </button>
+          </div>
+
+          <div id="full-gallery" class="mt-16 hidden opacity-0 transition-opacity duration-500">
+            <h3 class="text-3xl font-bold text-center text-pink-200 mb-8">
+              Galería Completa
+            </h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+              {
+                allImages.map(([path, mod]) => (
+                  <div class="relative group aspect-[3/4] overflow-hidden rounded-xl shadow-lg border-2 border-transparent hover:border-pink-500 transition-all duration-300 transform hover:scale-[1.03]">
+                    <img
+                      src={path.replace("/public", "")}
+                      alt="Ilustración de Lornychi"
+                      class="w-full h-full object-cover group-hover:opacity-75 transition-opacity duration-300"
+                      loading="lazy"
+                    />
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                      <span class="text-white text-lg font-semibold">Ver</span>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+            <div class="mt-12 text-center">
+              <a
+                href="https://ko-fi.com/lornychi"
+                target="_blank"
+                class="inline-block bg-pink-700 text-white font-bold px-8 py-4 rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105"
+              >
+                💖 Más arte en Ko-fi
+              </a>
             </div>
           </div>
-          <a
-            href="https://steamcommunity.com/id/lornychi"
-            target="_blank"
-            class="bg-pink-950/60 border border-pink-700 rounded-xl p-4 text-center hover:bg-pink-700/40 transition"
-          >
-            <div class="font-semibold text-white">Steam</div>
-            <div class="text-pink-200 text-sm">Mis juegos favoritos</div>
-          </a>
-          <div
-            class="bg-pink-950/60 border border-pink-700 rounded-xl p-4 text-center hover:bg-pink-700/40 transition cursor-pointer"
-            onclick="navigator.clipboard.writeText('LornychiVT')"
-          >
-            <div class="font-semibold text-white">Epic</div>
-            <div class="text-pink-200 text-sm">ID: LornychiVT</div>
+        </section>
+        
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          <div class="p-8 rounded-3xl bg-gray-900 border border-gray-700 shadow-xl animate-fade-in-up">
+            <h3 class="text-3xl font-semibold text-pink-200 mb-6">Sobre mí</h3>
+            <ul class="space-y-4 text-gray-300 text-lg">
+              <li><span class="font-bold text-pink-300">🌸 Vtuber:</span> Directos de lunes a sábado de 4 a 9 PM (HN).</li>
+              <li><span class="font-bold text-pink-300">✍️ Ilustradora:</span> Uso MediBang Paint para mis dibujos. ¡Las comisiones están abiertas!</li>
+              <li><span class="font-bold text-pink-300">🎮 Gamer:</span> Amo juegos como Halo, Red Dead Redemption 2, Minecraft, y Elden Ring.</li>
+              <li><span class="font-bold text-pink-300">☕ Personal:</span> Cumpleaños el 23 de mayo. Soy de Honduras y tengo un gato llamado Misho.</li>
+            </ul>
           </div>
-        </div>
-      </section>
+          
+          <div class="p-8 rounded-3xl bg-gray-900 border border-gray-700 shadow-xl animate-fade-in-up">
+            <h3 class="text-3xl font-semibold text-pink-200 mb-6">Conecta conmigo</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <a href="https://twitch.tv/lornychi" target="_blank" class="group flex items-center justify-center p-4 bg-gray-800/60 border border-gray-700 rounded-xl transition-all duration-300 hover:bg-pink-700/40 transform hover:-translate-y-1">
+                <span class="font-bold text-white text-lg group-hover:text-pink-100">Twitch</span>
+              </a>
+              <a href="https://discord.gg/8cNUnn6Jcr" target="_blank" class="group flex items-center justify-center p-4 bg-gray-800/60 border border-gray-700 rounded-xl transition-all duration-300 hover:bg-pink-700/40 transform hover:-translate-y-1">
+                <span class="font-bold text-white text-lg group-hover:text-pink-100">Discord</span>
+              </a>
+              <a href="https://instagram.com/lornychi" target="_blank" class="group flex items-center justify-center p-4 bg-gray-800/60 border border-gray-700 rounded-xl transition-all duration-300 hover:bg-pink-700/40 transform hover:-translate-y-1">
+                <span class="font-bold text-white text-lg group-hover:text-pink-100">Instagram</span>
+              </a>
+              <a href="https://ko-fi.com/lornychi" target="_blank" class="group flex items-center justify-center p-4 bg-gray-800/60 border border-gray-700 rounded-xl transition-all duration-300 hover:bg-pink-700/40 transform hover:-translate-y-1">
+                <span class="font-bold text-white text-lg group-hover:text-pink-100">Ko-fi</span>
+              </a>
+              <a href="https://twitter.com/lornychi" target="_blank" class="group flex items-center justify-center p-4 bg-gray-800/60 border border-gray-700 rounded-xl transition-all duration-300 hover:bg-pink-700/40 transform hover:-translate-y-1">
+                <span class="font-bold text-white text-lg group-hover:text-pink-100">Twitter</span>
+              </a>
+              <a href="https://www.youtube.com/@lornychi" target="_blank" class="group flex items-center justify-center p-4 bg-gray-800/60 border border-gray-700 rounded-xl transition-all duration-300 hover:bg-pink-700/40 transform hover:-translate-y-1">
+                <span class="font-bold text-white text-lg group-hover:text-pink-100">YouTube</span>
+              </a>
+              <div
+                class="group flex items-center justify-center p-4 bg-gray-800/60 border border-gray-700 rounded-xl transition-all duration-300 hover:bg-pink-700/40 transform hover:-translate-y-1 cursor-pointer"
+                onclick="navigator.clipboard.writeText('Familymichy.playwn.co')"
+              >
+                <span class="font-bold text-white text-lg group-hover:text-pink-100">Minecraft</span>
+              </div>
+              <a
+                href="https://steamcommunity.com/id/lornychi"
+                target="_blank"
+                class="group flex items-center justify-center p-4 bg-gray-800/60 border border-gray-700 rounded-xl transition-all duration-300 hover:bg-pink-700/40 transform hover:-translate-y-1"
+              >
+                <span class="font-bold text-white text-lg group-hover:text-pink-100">Steam</span>
+              </a>
+            </div>
+            <div class="mt-6 text-center text-sm text-gray-400">
+              <p><strong>Minecraft Server:</strong> Familymichy.playwn.co</p>
+              <p><strong>Epic ID:</strong> LornychiVT</p>
+            </div>
+          </div>
+        </section>
+      </main>
 
-      <!-- Art -->
-      <section class="mt-16 mx-[8%]">
-        <h2 class="text-2xl font-semibold text-center text-pink-200 mb-6">
-          🎨 Galería de Ilustraciones
-        </h2>
-        <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
-          {
-            images.map(([path, mod]) => (
-              <img
-                src={path.replace("/public", "")}
-                alt="Ilustración"
-                class="w-full rounded-xl border border-pink-700 shadow-pink-500/20 shadow-md object-cover"
-                loading="lazy"
-              />
-            ))
-          }
-        </div>
-        <div class="mt-8 text-center">
-          <a
-            href="https://ko-fi.com/lornychi"
-            target="_blank"
-            class="inline-block bg-pink-700 text-white px-6 py-3 rounded-full shadow-lg hover:bg-pink-600 transition"
-          >
-            💖 Descubre más de mi arte en Ko-fi
-          </a>
-        </div>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-black/80 border-t border-pink-800 mt-20">
-      <div class="max-w-7xl mx-auto py-6 px-6 text-center">
-        <p class="text-sm text-pink-400">
+      <footer class="text-center text-sm text-gray-400 p-8">
+        <p>
           © {new Date().getFullYear()} Lornychi. Todos los derechos reservados.
         </p>
-        <p class="text-sm text-pink-400 mt-1">
-          Build With ❤️ By <a
+        <p class="mt-1">
+          Hecho con ❤️ por
+          <a
             href="https://instagram.com/YourS4nty"
             target="_blank"
-            class="underline hover:text-pink-300">@YourS4nty</a
+            class="underline hover:text-pink-300 transition-colors"
           >
+            @YourS4nty
+          </a>
         </p>
-      </div>
-    </footer>
+      </footer>
+    </div>
+    
+    <style>
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      @keyframes popIn {
+        0% { transform: scale(0.5); opacity: 0; }
+        80% { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(1); }
+      }
+      
+      @keyframes slideUp {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+      
+      .animate-fade-in {
+        animation: fadeIn 1s ease-out;
+      }
+      
+      .animate-pop-in {
+        animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      }
+      
+      .animate-slide-up {
+        animation: slideUp 1s ease-out;
+      }
+    </style>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const carouselInner = document.getElementById('carousel-inner');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const viewAllBtn = document.getElementById('view-all-btn');
+        const fullGallery = document.getElementById('full-gallery');
+
+        let currentIndex = 0;
+        const totalItems = carouselInner.children.length;
+        let autoplayInterval;
+        const autoplayDuration = 3000;
+
+        function updateCarousel() {
+          carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        function startAutoplay() {
+          stopAutoplay();
+          autoplayInterval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalItems;
+            updateCarousel();
+          }, autoplayDuration);
+        }
+
+        function stopAutoplay() {
+          clearInterval(autoplayInterval);
+        }
+
+        startAutoplay();
+
+        prevBtn.addEventListener('click', () => {
+          stopAutoplay();
+          currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+          updateCarousel();
+        });
+
+        nextBtn.addEventListener('click', () => {
+          stopAutoplay();
+          currentIndex = (currentIndex + 1) % totalItems;
+          updateCarousel();
+        });
+
+        const carouselContainer = document.getElementById('image-carousel');
+        carouselContainer.addEventListener('mouseenter', stopAutoplay);
+        carouselContainer.addEventListener('mouseleave', startAutoplay);
+
+        viewAllBtn.addEventListener('click', () => {
+          if (fullGallery.classList.contains('hidden')) {
+            fullGallery.classList.remove('hidden');
+            fullGallery.offsetHeight; 
+            fullGallery.classList.add('opacity-100');
+            viewAllBtn.textContent = '👆 Ocultar galería';
+            stopAutoplay();
+          } else {
+            fullGallery.classList.remove('opacity-100');
+            fullGallery.addEventListener('transitionend', function handler() {
+              fullGallery.classList.add('hidden');
+              fullGallery.removeEventListener('transitionend', handler);
+            });
+            viewAllBtn.textContent = '🖼️ Ver todas las obras';
+            startAutoplay();
+          }
+        });
+      });
+    </script>
   </body>
 </html>
