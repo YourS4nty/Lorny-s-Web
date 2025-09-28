@@ -16,8 +16,8 @@ let carouselImages = allImages;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lornychi | Vtuber & Ilustradora</title>
-    <link rel="icon" href="avatar.webp" type="image/x-icon" />
+    <title>Lornychi | Vtuber E Ilustradora</title>
+    <link rel="icon" href="icon.ico" type="image/x-icon" />
     <meta
       name="description"
       content="¡Hola, soy Lornychi! Vtuber e ilustradora de Honduras. Aquí encontrarás mis streams, dibujos y más. ¡Únete a la diversión!"
@@ -33,168 +33,606 @@ let carouselImages = allImages;
       content="¡Hola, soy Lornychi! Vtuber e ilustradora de Honduras. Aquí encontrarás mis streams, dibujos y más. ¡Únete a la diversión!"
     />
     <meta property="og:image" content="avatar.webp" />
+    <meta name="google-adsense-account" content="ca-pub-9638687023869566" />
+    <!-- Font Awesome (icons) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
+
   <body
-    class="bg-black text-white font-sans selection:bg-pink-700 selection:text-white overflow-x-hidden"
+    class="bg-black text-white font-sans selection:bg-pink-700 selection:text-white overflow-hidden"
   >
-    <div class="relative bg-black min-h-screen">
-      <section 
-        class="relative flex flex-col items-center justify-center w-full min-h-[500px] md:min-h-[600px] overflow-hidden"
-      >
-        <img
-          src="banner.webp"
-          alt="Banner de Lornychi"
-          class="absolute inset-0 w-full h-full object-cover object-center animate-fade-in"
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-        
-        <div class="relative z-10 flex flex-col items-center text-center p-6 md:p-10">
-          <img
-            src="avatar.webp"
-            alt="Avatar Lornychi"
-            class="w-40 h-40 md:w-52 md:h-52 rounded-full border-4 border-pink-500 ring-4 ring-pink-300/50 shadow-xl mb-6 animate-pop-in"
-          />
-          <h1 class="text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg tracking-wide">
-            Lornychi
-          </h1>
-          <p class="text-white italic mt-2 text-xl md:text-2xl max-w-2xl">
-            Vtuber & Ilustradora de Honduras 🇭🇳
-            <br />
-            ¡Bienvenidos a mi portafolio artístico!
-          </p>
-        </div>
-      </section>
-
-      <main class="w-full max-w-7xl mx-auto p-4 md:p-8 -mt-16 relative z-20">
-        <section class="mb-16 animate-slide-up">
-          <h2 class="text-4xl font-bold text-center text-pink-200 mb-8">
-            ✨ Obras Destacadas ✨
-          </h2>
-          <div id="image-carousel" class="relative w-full max-w-4xl mx-auto rounded-xl shadow-2xl group overflow-hidden bg-gray-900 aspect-[4/3]">
-            <div class="flex h-full transition-transform duration-500 ease-in-out" id="carousel-inner">
-              {
-                carouselImages.map(([path, mod]) => (
-                  <div class="w-full h-full flex-shrink-0">
-                    <img
-                      src={path.replace("/public", "")}
-                      alt="Ilustración de Lornychi"
-                      class="w-full h-full object-contain object-center rounded-xl border border-pink-700"
-                      loading="lazy"
-                    />
-                  </div>
-                ))
-              }
-            </div>
-            
-            <button id="prev-btn" class="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/75">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button id="next-btn" class="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/75">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-
-          <div class="mt-12 text-center">
-            <button
-              id="view-all-btn"
-              class="inline-block bg-pink-700 text-white font-bold px-8 py-4 rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105"
-            >
-              🖼️ Ver todas las obras
-            </button>
-          </div>
-
-          <div id="full-gallery" class="mt-16 hidden opacity-0 transition-opacity duration-500">
-            <h3 class="text-3xl font-bold text-center text-pink-200 mb-8">
-              Galería Completa
-            </h3>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
-              {
-                allImages.map(([path, mod]) => (
-                  <div class="relative group aspect-[3/4] overflow-hidden rounded-xl shadow-lg border-2 border-transparent hover:border-pink-500 transition-all duration-300 transform hover:scale-[1.03]">
-                    <img
-                      src={path.replace("/public", "")}
-                      alt="Ilustración de Lornychi"
-                      class="w-full h-full object-cover group-hover:opacity-75 transition-opacity duration-300"
-                      loading="lazy"
-                    />
-                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
-                      <span class="text-white text-lg font-semibold">Ver</span>
-                    </div>
-                  </div>
-                ))
-              }
-            </div>
-            <div class="mt-12 text-center">
-              <a
-                href="https://ko-fi.com/lornychi"
-                target="_blank"
-                class="inline-block bg-pink-700 text-white font-bold px-8 py-4 rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105"
+    <div class="relative bg-black min-h-screen w-full">
+      <!-- NAV -->
+      <nav class="absolute top-8 left-1/2 -translate-x-1/2 z-50">
+        <div
+          class="bg-white px-6 py-2 rounded-full shadow-md text-gray-700 font-semibold"
+        >
+          <ul class="flex gap-6 text-sm md:text-base items-center">
+            <li>
+              <button class="nav-btn" data-target="home" aria-pressed="true"
+                >HOME</button
               >
-                💖 Más arte en Ko-fi
-              </a>
+            </li>
+            <li>
+              <button class="nav-btn" data-target="comiss" aria-pressed="false"
+                >ART</button
+              >
+            </li>
+            <li>
+              <button class="nav-btn" data-target="about" aria-pressed="false"
+                >ABOUT</button
+              >
+            </li>
+            <li>
+              <button class="nav-btn" data-target="tos" aria-pressed="false"
+                >T.O.S</button
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- CONTENEDOR DE "PANTALLAS" -->
+      <main class="relative w-full h-screen bg-[#cd001e]">
+        <div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+          <div class="snow"></div>
+        </div>
+        <!-- ------------- HOME ------------- -->
+        <section id="home" class="page-section is-visible">
+          <div
+            class="w-full max-w-7xl mx-auto p-8 flex flex-col justify-center"
+          >
+            <!-- Intro Card (centro superior) -->
+            <div
+              class="relative flex flex-col md:p-8 justify-center overflow-hidden mx-auto pr-5 pt-8"
+            >
+              <div
+                class="bg-white rounded-2xl shadow-xl p-6 mx-auto flex flex-col items-center animate-pop-in"
+              >
+                <img
+                  src="avatar.webp"
+                  alt="Avatar Lornychi"
+                  class="w-40 h-40 rounded-xl object-contain shadow-md mb-4"
+                />
+                <img
+                  src="/banner.webp"
+                  alt="banner"
+                  class="h-25 object-contain"
+                />
+                <p class="mt-2 text-gray-600 text-xs tracking-wide">
+                  VTUBER • STREAMER • ARTIST
+                </p>
+
+                <div class="flex gap-4 mt-4 text-[#cd001e] text-2xl">
+                  <a
+                    href="https://twitch.tv/lornychi"
+                    target="_blank"
+                    aria-label="Twitch"
+                    class="transition-all duration-300 ease-out transform hover:scale-110 hover:-translate-y-1 hover:text-blue-400"
+                  >
+                    <i class="fa-brands fa-twitch"></i>
+                  </a>
+                  <a
+                    href="https://twitter.com/lornychi"
+                    target="_blank"
+                    aria-label="Twitter"
+                    class="transition-all duration-300 ease-out transform hover:scale-110 hover:-translate-y-1 hover:text-blue-400"
+                  >
+                    <i class="fa-brands fa-twitter"></i>
+                  </a>
+                  <a
+                    href="https://youtube.com/@lornychi"
+                    target="_blank"
+                    aria-label="YouTube"
+                    class="transition-all duration-300 ease-out transform hover:scale-110 hover:-translate-y-1 hover:text-blue-400"
+                  >
+                    <i class="fa-brands fa-youtube"></i>
+                  </a>
+                  <a
+                    href="https://tiktok.com/@lornychi"
+                    target="_blank"
+                    aria-label="TikTok"
+                    class="transition-all duration-300 ease-out transform hover:scale-110 hover:-translate-y-1 hover:text-blue-400"
+                  >
+                    <i class="fa-brands fa-tiktok"></i>
+                  </a>
+                  <a
+                    href="https://instagram.com/lornychi"
+                    target="_blank"
+                    aria-label="Instagram"
+                    class="transition-all duration-300 ease-out transform hover:scale-110 hover:-translate-y-1 hover:text-blue-400"
+                  >
+                    <i class="fa-brands fa-instagram"></i>
+                  </a>
+                  <a
+                    href="https://discord.gg/8cNUnn6Jcr"
+                    target="_blank"
+                    aria-label="Discord"
+                    class="transition-all duration-300 ease-out transform hover:scale-110 hover:-translate-y-1 hover:text-blue-400"
+                  >
+                    <i class="fa-brands fa-discord"></i>
+                  </a>
+                  <a
+                    href="https://steamcommunity.com/id/lornychi"
+                    target="_blank"
+                    aria-label="Steam"
+                    class="transition-all duration-300 ease-out transform hover:scale-110 hover:-translate-y-1 hover:text-blue-400"
+                  >
+                    <i class="fa-brands fa-steam"></i>
+                  </a>
+                </div>
+                <div class="mt-4">
+                  <a href="https://ko-fi.com/lornychi" target="_blank">
+                    <img
+                      height="36"
+                      style="border:0px;height:36px;"
+                      src="https://storage.ko-fi.com/cdn/kofi3.png?v=3"
+                      alt="Buy Me a Coffee at ko-fi.com"
+                    />
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
-        
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          <div class="p-8 rounded-3xl bg-gray-900 border border-gray-700 shadow-xl animate-fade-in-up">
-            <h3 class="text-3xl font-semibold text-pink-200 mb-6">Sobre mí</h3>
-            <ul class="space-y-4 text-gray-300 text-lg">
-              <li><span class="font-bold text-pink-300">🌸 Vtuber:</span> Directos de lunes a sábado de 4 a 9 PM (HN).</li>
-              <li><span class="font-bold text-pink-300">✍️ Ilustradora:</span> Uso MediBang Paint para mis dibujos. ¡Las comisiones están abiertas!</li>
-              <li><span class="font-bold text-pink-300">🎮 Gamer:</span> Amo juegos como Halo, Red Dead Redemption 2, Minecraft, y Elden Ring.</li>
-              <li><span class="font-bold text-pink-300">☕ Personal:</span> Cumpleaños el 23 de mayo. Soy de Honduras y tengo un gato llamado Misho.</li>
-            </ul>
-          </div>
-          
-          <div class="p-8 rounded-3xl bg-gray-900 border border-gray-700 shadow-xl animate-fade-in-up">
-            <h3 class="text-3xl font-semibold text-pink-200 mb-6">Conecta conmigo</h3>
-            <div class="grid grid-cols-2 gap-4">
-              <a href="https://twitch.tv/lornychi" target="_blank" class="group flex items-center justify-center p-4 bg-gray-800/60 border border-gray-700 rounded-xl transition-all duration-300 hover:bg-pink-700/40 transform hover:-translate-y-1">
-                <span class="font-bold text-white text-lg group-hover:text-pink-100">Twitch</span>
-              </a>
-              <a href="https://discord.gg/8cNUnn6Jcr" target="_blank" class="group flex items-center justify-center p-4 bg-gray-800/60 border border-gray-700 rounded-xl transition-all duration-300 hover:bg-pink-700/40 transform hover:-translate-y-1">
-                <span class="font-bold text-white text-lg group-hover:text-pink-100">Discord</span>
-              </a>
-              <a href="https://instagram.com/lornychi" target="_blank" class="group flex items-center justify-center p-4 bg-gray-800/60 border border-gray-700 rounded-xl transition-all duration-300 hover:bg-pink-700/40 transform hover:-translate-y-1">
-                <span class="font-bold text-white text-lg group-hover:text-pink-100">Instagram</span>
-              </a>
-              <a href="https://ko-fi.com/lornychi" target="_blank" class="group flex items-center justify-center p-4 bg-gray-800/60 border border-gray-700 rounded-xl transition-all duration-300 hover:bg-pink-700/40 transform hover:-translate-y-1">
-                <span class="font-bold text-white text-lg group-hover:text-pink-100">Ko-fi</span>
-              </a>
-              <a href="https://twitter.com/lornychi" target="_blank" class="group flex items-center justify-center p-4 bg-gray-800/60 border border-gray-700 rounded-xl transition-all duration-300 hover:bg-pink-700/40 transform hover:-translate-y-1">
-                <span class="font-bold text-white text-lg group-hover:text-pink-100">Twitter</span>
-              </a>
-              <a href="https://www.youtube.com/@lornychi" target="_blank" class="group flex items-center justify-center p-4 bg-gray-800/60 border border-gray-700 rounded-xl transition-all duration-300 hover:bg-pink-700/40 transform hover:-translate-y-1">
-                <span class="font-bold text-white text-lg group-hover:text-pink-100">YouTube</span>
-              </a>
-              <div
-                class="group flex items-center justify-center p-4 bg-gray-800/60 border border-gray-700 rounded-xl transition-all duration-300 hover:bg-pink-700/40 transform hover:-translate-y-1 cursor-pointer"
-                onclick="navigator.clipboard.writeText('Familymichy.playwn.co')"
-              >
-                <span class="font-bold text-white text-lg group-hover:text-pink-100">Minecraft</span>
-              </div>
-              <a
-                href="https://steamcommunity.com/id/lornychi"
-                target="_blank"
-                class="group flex items-center justify-center p-4 bg-gray-800/60 border border-gray-700 rounded-xl transition-all duration-300 hover:bg-pink-700/40 transform hover:-translate-y-1"
-              >
-                <span class="font-bold text-white text-lg group-hover:text-pink-100">Steam</span>
-              </a>
+
+        <!-- ------------- COMISS ------------- -->
+        <section id="comiss" class="page-section is-hidden">
+          <div class="section-inner w-full max-w-7xl mx-auto p-6 md:p-8 my-10">
+            <h2 class="text-4xl font-bold text-center text-white mb-6">
+              💖 Comisiones
+            </h2>
+            <p class="max-w-2xl text-lg text-gray-300 mx-auto text-center">
+              🌸 las imagenes mostradas acontinuacion son Comisiones
+              registradas, no usar para uso comercial. Si deseas una comision,
+              contactame en mis redes sociales. 🪭
+            </p>
+
+            <div
+              class="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6"
+            >
+              {
+                allImages.map(([path, mod]) => (
+                  <div class="relative group aspect-[3/4] overflow-hidden rounded-xl shadow-lg border-2 border-transparent hover:border-pink-200 transform hover:scale-105 duration-150">
+                    <img
+                      src={path.replace("/public", "")}
+                      alt="Ilustración de Lornychi"
+                      class="w-full h-full object-cover group-hover:opacity-90 transition-opacity duration-10"
+                    />
+                  </div>
+                ))
+              }
             </div>
-            <div class="mt-6 text-center text-sm text-gray-400">
-              <p><strong>Minecraft Server:</strong> Familymichy.playwn.co</p>
-              <p><strong>Epic ID:</strong> LornychiVT</p>
+          </div>
+        </section>
+
+        <!-- ------------- ABOUT ------------- -->
+        <section id="about" class="page-section is-hidden">
+          <div class="section-inner w-full max-w-7xl mx-auto p-6 md:p-8 mt-10">
+            <h2 class="text-4xl font-bold text-center text-white mb-6">
+              🌸Sobre mí / Mis Componentes
+            </h2>
+
+            <div
+              class="p-8 rounded-3xl border shadow-xl animate-fade-in-up max-w-3xl mx-auto"
+              style="background: rgba(205, 0, 30, 0.34);border-radius: 16px;box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);backdrop-filter: blur(4.7px);-webkit-backdrop-filter: blur(4.7px);border: 2px solid rgba(205, 0, 30, 1);"
+            >
+              <ul class="space-y-4 text-gray-300 text-lg">
+                <li>
+                  <span class="font-bold text-pink-300">🌸 Vtuber:</span> Directos
+                  de lunes a sábado de 4 a 9 PM (HN).
+                </li>
+                <li>
+                  <span class="font-bold text-pink-300">✍️ Ilustradora:</span> Uso
+                  MediBang Paint para mis dibujos. ¡Las comisiones están abiertas!
+                </li>
+                <li>
+                  <span class="font-bold text-pink-300">🎮 Gamer:</span> Amo juegos
+                  como Halo, Red Dead Redemption 2, Minecraft, y Elden Ring.
+                </li>
+                <li>
+                  <span class="font-bold text-pink-300">☕ Personal:</span> Cumpleaños
+                  el 23 de mayo. Soy de Honduras y tengo un gato llamado Misho.
+                </li>
+                <li><h1 class="text-center">🛠️ Mi Pc 🖥️</h1></li>
+                <li>📡Placa Base: MSI B550-A Pro</li>
+                <li>🎮CPU: AMD Ryzen 7 5700X 3.40 GHz / GPU: AMD RX 580</li>
+                <li>📀RAM: 16GB / SSD: 256 GB / HDD: 1 TB</li>
+                <li>🎙️Microfono: Fifine Ampligame / Webcam: Logitech C525</li>
+                <li>🖱️Mouse: Razer DeathHadder Essential</li>
+                <li></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- ------------- TOS ------------- -->
+        <section id="tos" class="page-section is-hidden">
+          <div class="section-inner w-full max-w-7xl mx-auto p-6 md:p-8 mt-10">
+            <h2 class="text-4xl font-bold text-center text-white mb-6">
+              🌸 Estos son Mis Terminos Y Condiciones
+            </h2>
+
+            <div
+              class="p-8 rounded-3xl border shadow-xl animate-fade-in-up max-w-3xl mx-auto"
+              style="background: rgba(205, 0, 30, 0.34);border-radius: 16px;box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);backdrop-filter: blur(4.7px);-webkit-backdrop-filter: blur(4.7px);border: 2px solid rgba(205, 0, 30, 1);"
+            >
+              <ul class="space-y-4 text-gray-300 text-lg">
+                <!-- Tipos de obra -->
+                <li>
+                  A continuacion se muestran los tipos de obras que realizo y
+                  las que no. Si tienes alguna duda, contactame en mis redes
+                  sociales. El contenido que no dibujo no es negociable.
+                </li>
+                <li class="text-center w-full font-bold text-sm md:text-lg">
+                  <div class="p-4 w-full overflow-x-hidden">
+                    <table
+                      class="table-auto border-collapse border border-gray-300 w-full text-left"
+                    >
+                      <thead>
+                        <tr class="bg-gray-100 text-gray-800">
+                          <th class="border border-gray-300 px-4 py-2"
+                            >✔ Lo que dibujo</th
+                          >
+                          <th class="border border-gray-300 px-4 py-2"
+                            >✘ Lo que no dibujo</th
+                          >
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="border border-gray-300 px-4 py-2">Furry</td
+                          >
+                          <td class="border border-gray-300 px-4 py-2">Gore</td>
+                        </tr>
+                        <tr>
+                          <td class="border border-gray-300 px-4 py-2">O'C</td>
+                          <td class="border border-gray-300 px-4 py-2"
+                            >Realismo</td
+                          >
+                        </tr>
+                        <tr>
+                          <td class="border border-gray-300 px-4 py-2"
+                            >Custom</td
+                          >
+                          <td class="border border-gray-300 px-4 py-2">NSFW</td>
+                        </tr>
+                        <tr>
+                          <td class="border border-gray-300 px-4 py-2">Chibi</td
+                          >
+                          <td class="border border-gray-300 px-4 py-2"
+                            >Mechas/Robot</td
+                          >
+                        </tr>
+                        <tr>
+                          <td class="border border-gray-300 px-4 py-2"
+                            >Emotes</td
+                          >
+                          <td class="border border-gray-300 px-4 py-2"
+                            >Fondos Muy Detallados</td
+                          >
+                        </tr>
+                        <tr>
+                          <td class="border border-gray-300 px-4 py-2">SFW</td>
+                          <td class="border border-gray-300 px-4 py-2"
+                            >Lolikon</td
+                          >
+                        </tr>
+                        <tr>
+                          <td class="border border-gray-300 px-4 py-2"
+                            >Paneles</td
+                          >
+                          <td class="border border-gray-300 px-4 py-2"
+                            >Poses Complejas</td
+                          >
+                        </tr>
+                        <tr>
+                          <td class="border border-gray-300 px-4 py-2"
+                            >Fondos Simples</td
+                          >
+                          <td class="border border-gray-300 px-4 py-2"
+                            >Contenido Sexual(Lo maximo es en lenceria)</td
+                          >
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </li>
+                <!-- Términos Generales -->
+                <li><h1 class="text-center">📝Terminos Generales</h1></li>
+                <li>
+                  ➤ Al encargar una comisión, aceptas estos Términos de
+                  Servicio.
+                </li>
+                <li>
+                  ➤ Se comenzara la comision una vez que se confirme el pago.
+                </li>
+                <li>
+                  ➤ Las comisiones se realizaran en el orden en que fueron
+                  pagadas.
+                </li>
+                <li>
+                  ➤ El tiempo de finalizacion del dibujo es de 1 a 2 semanas
+                  dependiendo de la complejidad del mismo.
+                </li>
+                <li>
+                  ➤ No se haran devoluciones o cancelaciones de las comisiones.
+                  porfavor estar seguro de lo que deseas antes de pagar.
+                </li>
+                <li>
+                  ➤ La ilustracion no podra ser usada para fines comerciales.
+                  unicamente para uso personal.
+                </li>
+                <li>
+                  ➤ Vender el producto final como NFT o en plataformas similares
+                  esta estrictamente prohibido. y se registrara al usuario que
+                  lo haga.
+                </li>
+                <li>
+                  ➤ Realizar cambios del dibujo despues de haber sido finalizado
+                  tendra un costo adicional(esto excluye los errores del
+                  artista).
+                </li>
+                <li>
+                  ➤ Queda rotundamente prohibido remover la firma/marca de agua
+                  del artista, reclamar la obra como propia o usar como
+                  entrenamiento en IA.
+                </li>
+
+                <!-- Pago -->
+                <li>
+                  <h1 class="text-center">💸Metodos y Condiciones De Pago</h1>
+                </li>
+                <li>
+                  ➣ Para pagos internacionales: PayPal, Ko-fi, Western union.
+                </li>
+                <li>➣ Para pagos nacionales (Honduras): Banpais/Tigomoney.</li>
+                <li>
+                  ➣ El pago debe realizarse por adelantado antes de iniciar la
+                  comisión.
+                </li>
+                <li>
+                  ➣ los precios no seran rebajados, cualquier intento de regateo
+                  sera motivo de cancelacion de la comision.
+                </li>
+                <li>
+                  ➣ Para mas personajes en la misma comision se debera pagar la
+                  mitad del precio base por cada personaje adicional.
+                </li>
+
+                <!-- Uso -->
+                <li><h1 class="text-center">🖼️Uso De La Obra</h1></li>
+                <li>
+                  ✿ La obra final podra ser publicada por el artista en sus
+                  redes sociales, portafolio y demas plataformas(siempre
+                  indicando que se trata de una comision).
+                </li>
+                <li>
+                  ✿ El comisionado podra publicar la obra en sus redes sociales
+                  siempre dando credito al artista.
+                </li>
+                <li>
+                  ✿ El producto final es Unicamente Para uso personal y no
+                  comercial. El cliente no puede revender, distribuir o usar la
+                  obra con fines comerciales a menos de llegar a un acuerdo con
+                  el artista.
+                </li>
+                <li>
+                  ✿ Las comisiones de uso comercial no transfieren la autoria de
+                  la obra.
+                </li>
+              </ul>
             </div>
           </div>
         </section>
       </main>
 
-      <footer class="text-center text-sm text-gray-400 p-8">
+      <!-- FOOTER -->
+      <footer
+        class="absolute bottom-18 md:bottom-2 left-1/2 -translate-x-1/2 text-center text-sm text-white z-999"
+      >
         <p>
           © {new Date().getFullYear()} Lornychi. Todos los derechos reservados.
         </p>
@@ -203,108 +641,284 @@ let carouselImages = allImages;
           <a
             href="https://instagram.com/YourS4nty"
             target="_blank"
-            class="underline hover:text-pink-300 transition-colors"
+            class="underline hover:text-pink-300"
           >
-            @YourS4nty
-          </a>
+            @YourS4nty</a
+          >
         </p>
       </footer>
     </div>
-    
-    <style>
-      @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-      }
 
-      @keyframes popIn {
-        0% { transform: scale(0.5); opacity: 0; }
-        80% { transform: scale(1.1); opacity: 1; }
-        100% { transform: scale(1); }
-      }
-      
-      @keyframes slideUp {
-        from { transform: translateY(20px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
-      }
-      
-      .animate-fade-in {
-        animation: fadeIn 1s ease-out;
-      }
-      
-      .animate-pop-in {
-        animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-      }
-      
-      .animate-slide-up {
-        animation: slideUp 1s ease-out;
-      }
-    </style>
+    <div>
+      <!-- LIGHTBOX -->
+      <div
+        id="lightbox"
+        class="fixed inset-0 bg-black/90 hidden items-center justify-center z-[9999]"
+      >
+        <button
+          id="close-lightbox"
+          class="absolute top-5 right-5 text-white text-3xl">&times;</button
+        >
+        <button id="prev-lightbox" class="absolute left-5 text-white text-4xl"
+          >&#10094;</button
+        >
+        <img id="lightbox-img" class="max-h-[90%] max-w-[90%] object-contain" />
+        <button id="next-lightbox" class="absolute right-5 text-white text-4xl"
+          >&#10095;</button
+        >
+      </div>
+    </div>
 
+    <!-- SCRIPTS -->
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const carouselInner = document.getElementById('carousel-inner');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const viewAllBtn = document.getElementById('view-all-btn');
-        const fullGallery = document.getElementById('full-gallery');
+      document.addEventListener("DOMContentLoaded", () => {
+        // NAV / PANTALLAS
+        const navBtns = document.querySelectorAll(".nav-btn");
+        const sections = {
+          home: document.getElementById("home"),
+          comiss: document.getElementById("comiss"),
+          about: document.getElementById("about"),
+          tos: document.getElementById("tos"),
+        };
+        let current: "home" | "comiss" | "about" | "tos" = "home";
 
+        // Asegurar estado inicial
+        Object.keys(sections).forEach((key) => {
+          const el = sections[key as keyof typeof sections];
+          if (!el) return;
+          if (key === current) {
+            el.classList.add("is-visible");
+            el.classList.remove("is-hidden");
+          } else {
+            el.classList.remove("is-visible");
+            el.classList.add("is-hidden");
+          }
+        });
+
+        function setActiveNav(buttonTarget: any) {
+          navBtns.forEach((btn) => {
+            const t = (btn as HTMLElement).dataset.target;
+            if (t === buttonTarget) {
+              btn.setAttribute("aria-pressed", "true");
+            } else {
+              btn.setAttribute("aria-pressed", "false");
+            }
+          });
+        }
+
+        function showSection(target: "home" | "comiss" | "about" | "tos") {
+          if (target === current) return;
+          const fromEl = sections[current];
+          const toEl = sections[target];
+          if (!toEl) return;
+
+          // hide current
+          if (fromEl) {
+            fromEl.classList.remove("is-visible");
+            fromEl.classList.add("is-hidden");
+          }
+
+          // show target
+          toEl.classList.remove("is-hidden");
+          // forzar reflow para anim
+          void toEl.offsetWidth;
+          toEl.classList.add("is-visible");
+
+          current = target;
+          setActiveNav(target);
+
+          // Carrusel: start/stop según sección visible
+          if (current === "home") startAutoplay();
+          else stopAutoplay();
+        }
+
+        navBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const target = (btn as HTMLElement).dataset.target as
+              | "home"
+              | "comiss"
+              | "about"
+              | "tos";
+            showSection(target);
+          });
+        });
+
+        // -------------------------------------------------------
+        // CARRUSEL (dentro de HOME)
+        const carouselInner = document.getElementById("carousel-inner");
+        const prevBtn = document.getElementById("prev-btn");
+        const nextBtn = document.getElementById("next-btn");
         let currentIndex = 0;
-        const totalItems = carouselInner.children.length;
-        let autoplayInterval;
+        let autoplayInterval:
+          | string
+          | number
+          | NodeJS.Timeout
+          | null
+          | undefined = null;
         const autoplayDuration = 3000;
 
         function updateCarousel() {
+          if (!carouselInner) return;
+          const total = carouselInner.children.length;
+          if (total === 0) return;
           carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
 
         function startAutoplay() {
           stopAutoplay();
+          if (!carouselInner) return;
+          const total = carouselInner.children.length;
+          if (total <= 1) return;
           autoplayInterval = setInterval(() => {
-            currentIndex = (currentIndex + 1) % totalItems;
+            currentIndex = (currentIndex + 1) % total;
             updateCarousel();
           }, autoplayDuration);
         }
 
         function stopAutoplay() {
-          clearInterval(autoplayInterval);
+          if (autoplayInterval) {
+            clearInterval(autoplayInterval);
+            autoplayInterval = null;
+          }
         }
 
-        startAutoplay();
-
-        prevBtn.addEventListener('click', () => {
-          stopAutoplay();
-          currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+        prevBtn?.addEventListener("click", () => {
+          if (!carouselInner) return;
+          const total = carouselInner.children.length || 1;
+          currentIndex = (currentIndex - 1 + total) % total;
           updateCarousel();
         });
 
-        nextBtn.addEventListener('click', () => {
-          stopAutoplay();
-          currentIndex = (currentIndex + 1) % totalItems;
+        nextBtn?.addEventListener("click", () => {
+          if (!carouselInner) return;
+          const total = carouselInner.children.length || 1;
+          currentIndex = (currentIndex + 1) % total;
           updateCarousel();
         });
 
-        const carouselContainer = document.getElementById('image-carousel');
-        carouselContainer.addEventListener('mouseenter', stopAutoplay);
-        carouselContainer.addEventListener('mouseleave', startAutoplay);
+        // Pause autoplay on hover
+        const carouselEl = document.getElementById("image-carousel");
+        carouselEl?.addEventListener("mouseenter", stopAutoplay);
+        carouselEl?.addEventListener("mouseleave", () => {
+          if (current === "home") startAutoplay();
+        });
 
-        viewAllBtn.addEventListener('click', () => {
-          if (fullGallery.classList.contains('hidden')) {
-            fullGallery.classList.remove('hidden');
-            fullGallery.offsetHeight; 
-            fullGallery.classList.add('opacity-100');
-            viewAllBtn.textContent = '👆 Ocultar galería';
+        // Iniciar autoplay si HOME está visible al inicio
+        if (current === "home") startAutoplay();
+
+        // -------------------------------------------------------
+        // "Ver todas las obras" toggle (full-gallery)
+        const viewAllBtn = document.getElementById("view-all-btn");
+        const fullGallery = document.getElementById("full-gallery");
+
+        viewAllBtn?.addEventListener("click", () => {
+          if (!fullGallery) return;
+          if (fullGallery.classList.contains("hidden")) {
+            fullGallery.classList.remove("hidden");
+            // forzar reflow
+            void fullGallery.offsetWidth;
+            fullGallery.classList.remove("opacity-0");
+            fullGallery.classList.add("opacity-100");
+            viewAllBtn.textContent = "👆 Ocultar galería";
+            // detener autoplay mientras la galería está abierta
             stopAutoplay();
           } else {
-            fullGallery.classList.remove('opacity-100');
-            fullGallery.addEventListener('transitionend', function handler() {
-              fullGallery.classList.add('hidden');
-              fullGallery.removeEventListener('transitionend', handler);
-            });
-            viewAllBtn.textContent = '🖼️ Ver todas las obras';
-            startAutoplay();
+            fullGallery.classList.remove("opacity-100");
+            fullGallery.classList.add("opacity-0");
+            fullGallery.addEventListener(
+              "transitionend",
+              function handler() {
+                fullGallery.classList.add("hidden");
+                fullGallery.removeEventListener("transitionend", handler);
+              },
+              { once: true },
+            );
+            viewAllBtn.textContent = "🖼️ Ver todas las obras";
+            if (current === "home") startAutoplay();
           }
         });
+      });
+      // -------------------------------------------------------
+      // LIGHTBOX
+      document.addEventListener("DOMContentLoaded", () => {
+        const galleryImages = document.querySelectorAll("#comiss img"); // todas las imágenes
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const closeBtn = document.getElementById("close-lightbox");
+        const prevBtn = document.getElementById("prev-lightbox");
+        const nextBtn = document.getElementById("next-lightbox");
+
+        let currentIndex = 0;
+
+        function showImage(index: number) {
+          if (index < 0) index = galleryImages.length - 1;
+          if (index >= galleryImages.length) index = 0;
+          currentIndex = index;
+          if (lightboxImg) {
+            const imgEl = galleryImages[currentIndex];
+            if (
+              imgEl instanceof HTMLImageElement &&
+              lightboxImg instanceof HTMLImageElement
+            ) {
+              lightboxImg.src = imgEl.src;
+            }
+          }
+        }
+
+        galleryImages.forEach((img, i) => {
+          img.addEventListener("click", () => {
+            if (lightbox) {
+              lightbox.classList.remove("hidden");
+              lightbox.classList.add("flex");
+            }
+            showImage(i);
+          });
+        });
+
+        if (closeBtn) {
+          closeBtn.addEventListener("click", () => {
+            if (lightbox) {
+              lightbox.classList.add("hidden");
+              lightbox.classList.remove("flex");
+            }
+          });
+        }
+
+        if (prevBtn) {
+          prevBtn.addEventListener("click", () => showImage(currentIndex - 1));
+        }
+        if (nextBtn) {
+          nextBtn.addEventListener("click", () => showImage(currentIndex + 1));
+        }
+
+        if (lightbox) {
+          lightbox.addEventListener("click", (e) => {
+            if (e.target === lightbox) {
+              lightbox.classList.add("hidden");
+              lightbox.classList.remove("flex");
+            }
+          });
+        }
+
+        document.addEventListener("keydown", (e) => {
+          if (!lightbox || lightbox.classList.contains("hidden")) return;
+          if (e.key === "Escape" && closeBtn) closeBtn.click();
+          if (e.key === "ArrowLeft" && prevBtn) prevBtn.click();
+          if (e.key === "ArrowRight" && nextBtn) nextBtn.click();
+        });
+
+        // swipe
+        let startX = 0;
+        if (lightbox) {
+          lightbox.addEventListener("touchstart", (e) => {
+            startX = e.touches[0].clientX;
+          });
+          lightbox.addEventListener("touchend", (e) => {
+            const endX = e.changedTouches[0].clientX;
+            if (startX - endX > 50 && nextBtn) nextBtn.click(); // swipe left
+            if (endX - startX > 50 && prevBtn) prevBtn.click(); // swipe right
+          });
+        }
       });
     </script>
   </body>
