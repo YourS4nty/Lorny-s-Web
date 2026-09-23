@@ -308,7 +308,7 @@ let carouselImages = allImages;
 								<div class="flex gap-4 mt-4 text-[#cd001e] text-2xl">
 									<a
 										href="https://twitch.tv/lornychi"
-										target="_blank"
+										target="_blank" rel="noopener noreferrer"
 										aria-label="Twitch"
 										class="transition-all duration-300 ease-out transform hover:scale-110 hover:-translate-y-1 hover:text-blue-400"
 									>
@@ -316,7 +316,7 @@ let carouselImages = allImages;
 									</a>
 									<a
 										href="https://twitter.com/lornychi"
-										target="_blank"
+										target="_blank" rel="noopener noreferrer"
 										aria-label="Twitter"
 										class="transition-all duration-300 ease-out transform hover:scale-110 hover:-translate-y-1 hover:text-blue-400"
 									>
@@ -324,7 +324,7 @@ let carouselImages = allImages;
 									</a>
 									<a
 										href="https://youtube.com/@lornychi"
-										target="_blank"
+										target="_blank" rel="noopener noreferrer"
 										aria-label="YouTube"
 										class="transition-all duration-300 ease-out transform hover:scale-110 hover:-translate-y-1 hover:text-blue-400"
 									>
@@ -332,7 +332,7 @@ let carouselImages = allImages;
 									</a>
 									<a
 										href="https://tiktok.com/@lornychi"
-										target="_blank"
+										target="_blank" rel="noopener noreferrer"
 										aria-label="TikTok"
 										class="transition-all duration-300 ease-out transform hover:scale-110 hover:-translate-y-1 hover:text-blue-400"
 									>
@@ -340,7 +340,7 @@ let carouselImages = allImages;
 									</a>
 									<a
 										href="https://instagram.com/lornychi"
-										target="_blank"
+										target="_blank" rel="noopener noreferrer"
 										aria-label="Instagram"
 										class="transition-all duration-300 ease-out transform hover:scale-110 hover:-translate-y-1 hover:text-blue-400"
 									>
@@ -348,7 +348,7 @@ let carouselImages = allImages;
 									</a>
 									<a
 										href="https://discord.gg/8cNUnn6Jcr"
-										target="_blank"
+										target="_blank" rel="noopener noreferrer"
 										aria-label="Discord"
 										class="transition-all duration-300 ease-out transform hover:scale-110 hover:-translate-y-1 hover:text-blue-400"
 									>
@@ -356,7 +356,7 @@ let carouselImages = allImages;
 									</a>
 									<a
 										href="https://steamcommunity.com/id/lornychi"
-										target="_blank"
+										target="_blank" rel="noopener noreferrer"
 										aria-label="Steam"
 										class="transition-all duration-300 ease-out transform hover:scale-110 hover:-translate-y-1 hover:text-blue-400"
 									>
@@ -364,7 +364,7 @@ let carouselImages = allImages;
 									</a>									
 								</div>
 								<div class="mt-4 flex justify-center items-center gap-4">
-									<a href="https://ko-fi.com/lornychi" target="_blank">
+									<a href="https://ko-fi.com/lornychi" target="_blank" rel="noopener noreferrer">
 										<img
 											height="36"
 											style="border:0px;height:36px;"
@@ -374,7 +374,7 @@ let carouselImages = allImages;
 									</a>
 									<a
 										href="https://vgen.co/Lornychi"
-										target="_blank"
+										target="_blank" rel="noopener noreferrer"
 										aria-label="Vgen"
 									>
 										<img src="https://help.vgen.co/hc/article_attachments/13004231445911" style="width:35px;">
@@ -401,7 +401,7 @@ let carouselImages = allImages;
 							class="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6"
 						>
 							{
-								allImages.map(([path, mod]) => (
+								allImages.map(([path]) => (
 									<div class="relative group aspect-[3/4] overflow-hidden rounded-xl shadow-lg border-2 border-transparent hover:border-pink-200 transform hover:scale-105 duration-150">
 										<img
 											src={path.replace("/public", "")}
@@ -647,7 +647,7 @@ let carouselImages = allImages;
 					Hecho con ❤️ por
 					<a
 						href="https://instagram.com/YourS4nty"
-						target="_blank"
+						target="_blank" rel="noopener noreferrer"
 						class="underline hover:text-pink-300"
 					>
 						@YourS4nty</a
@@ -756,12 +756,7 @@ let carouselImages = allImages;
 				const prevBtn = document.getElementById("prev-btn");
 				const nextBtn = document.getElementById("next-btn");
 				let currentIndex = 0;
-				let autoplayInterval:
-					| string
-					| number
-					| NodeJS.Timeout
-					| null
-					| undefined = null;
+				let autoplayInterval: ReturnType<typeof setInterval> | null = null;
 				const autoplayDuration = 3000;
 
 				function updateCarousel() {
