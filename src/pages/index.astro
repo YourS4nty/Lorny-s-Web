@@ -401,7 +401,7 @@ let carouselImages = allImages;
 							class="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6"
 						>
 							{
-								allImages.map(([path, mod]) => (
+								allImages.map(([path]) => (
 									<div class="relative group aspect-[3/4] overflow-hidden rounded-xl shadow-lg border-2 border-transparent hover:border-pink-200 transform hover:scale-105 duration-150">
 										<img
 											src={path.replace("/public", "")}
