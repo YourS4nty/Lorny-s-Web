@@ -3,13 +3,11 @@ title: "Lornychi | Streamer & Vtuber";
 import "/src/styles/global.css";
 
 let allImages = Object.entries(
-	await import.meta.glob("/public/*{webp,jpg,jpeg}", { eager: true }),
-).filter(([path]) => !path.includes("avatar") && !path.includes("banner"));
+	await import.meta.glob("/public/lornychi-art-*{webp,jpg,jpeg}", { eager: true }),
+);
 
-// Shuffle images for the carousel and grid to be dynamic
+// Shuffle the gallery so the artwork order changes on each visit.
 allImages = allImages.sort(() => Math.random() - 0.5);
-
-let carouselImages = allImages;
 ---
 
 <html lang="es">
@@ -17,7 +15,7 @@ let carouselImages = allImages;
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Lornychi | Vtuber E Ilustradora</title>
-		<link rel="icon" href="icon.ico" type="image/x-icon" />
+		<link rel="icon" href="/lornychi-favicon.ico" type="image/x-icon" />
 		<meta
 			name="description"
 			content="¡Hola, soy Lornychi! Vtuber e ilustradora de Honduras. Aquí encontrarás mis streams, dibujos y más. ¡Únete a la diversión!"
@@ -32,7 +30,7 @@ let carouselImages = allImages;
 			property="og:description"
 			content="¡Hola, soy Lornychi! Vtuber e ilustradora de Honduras. Aquí encontrarás mis streams, dibujos y más. ¡Únete a la diversión!"
 		/>
-		<meta property="og:image" content="avatar.webp" />
+		<meta property="og:image" content="/lornychi-avatar.webp" />
 		<meta name="google-adsense-account" content="ca-pub-9638687023869566" />
 		<!-- Font Awesome (icons) -->
 		<link
@@ -292,13 +290,18 @@ let carouselImages = allImages;
 								class="bg-white rounded-2xl shadow-xl p-6 mx-auto flex flex-col items-center animate-pop-in"
 							>
 								<img
-									src="avatar.webp"
+									src="/lornychi-avatar.webp"
 									alt="Avatar Lornychi"
+									loading="eager"
+									decoding="async"
+									fetchpriority="high"
 									class="w-40 h-40 rounded-xl object-contain shadow-md mb-4"
 								/>
 								<img
-									src="/banner.webp"
-									alt="banner"
+									src="/lornychi-banner.webp"
+									alt="Banner de Lornychi"
+									loading="eager"
+									decoding="async"
 									class="h-25 object-contain"
 								/>
 								<p class="mt-2 text-gray-600 text-xs tracking-wide">
@@ -406,6 +409,8 @@ let carouselImages = allImages;
 										<img
 											src={path.replace("/public", "")}
 											alt="Ilustración de Lornychi"
+											loading="lazy"
+											decoding="async"
 											class="w-full h-full object-cover group-hover:opacity-90 transition-opacity duration-10"
 										/>
 									</div>
@@ -621,10 +626,6 @@ let carouselImages = allImages;
 
 					current = target;
 					setActiveNav(target);
-
-					// Carrusel: start/stop según sección visible
-					if (current === "home") startAutoplay();
-					else stopAutoplay();
 				}
 
 				navBtns.forEach((btn) => {
@@ -638,95 +639,7 @@ let carouselImages = allImages;
 					});
 				});
 
-				// -------------------------------------------------------
-				// CARRUSEL (dentro de HOME)
-				const carouselInner = document.getElementById("carousel-inner");
-				const prevBtn = document.getElementById("prev-btn");
-				const nextBtn = document.getElementById("next-btn");
-				let currentIndex = 0;
-				let autoplayInterval: ReturnType<typeof setInterval> | null = null;
-				const autoplayDuration = 3000;
-
-				function updateCarousel() {
-					if (!carouselInner) return;
-					const total = carouselInner.children.length;
-					if (total === 0) return;
-					carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
-				}
-
-				function startAutoplay() {
-					stopAutoplay();
-					if (!carouselInner) return;
-					const total = carouselInner.children.length;
-					if (total <= 1) return;
-					autoplayInterval = setInterval(() => {
-						currentIndex = (currentIndex + 1) % total;
-						updateCarousel();
-					}, autoplayDuration);
-				}
-
-				function stopAutoplay() {
-					if (autoplayInterval) {
-						clearInterval(autoplayInterval);
-						autoplayInterval = null;
-					}
-				}
-
-				prevBtn?.addEventListener("click", () => {
-					if (!carouselInner) return;
-					const total = carouselInner.children.length || 1;
-					currentIndex = (currentIndex - 1 + total) % total;
-					updateCarousel();
-				});
-
-				nextBtn?.addEventListener("click", () => {
-					if (!carouselInner) return;
-					const total = carouselInner.children.length || 1;
-					currentIndex = (currentIndex + 1) % total;
-					updateCarousel();
-				});
-
-				// Pause autoplay on hover
-				const carouselEl = document.getElementById("image-carousel");
-				carouselEl?.addEventListener("mouseenter", stopAutoplay);
-				carouselEl?.addEventListener("mouseleave", () => {
-					if (current === "home") startAutoplay();
-				});
-
-				// Iniciar autoplay si HOME está visible al inicio
-				if (current === "home") startAutoplay();
-
-				// -------------------------------------------------------
-				// "Ver todas las obras" toggle (full-gallery)
-				const viewAllBtn = document.getElementById("view-all-btn");
-				const fullGallery = document.getElementById("full-gallery");
-
-				viewAllBtn?.addEventListener("click", () => {
-					if (!fullGallery) return;
-					if (fullGallery.classList.contains("hidden")) {
-						fullGallery.classList.remove("hidden");
-						// forzar reflow
-						void fullGallery.offsetWidth;
-						fullGallery.classList.remove("opacity-0");
-						fullGallery.classList.add("opacity-100");
-						viewAllBtn.textContent = "👆 Ocultar galería";
-						// detener autoplay mientras la galería está abierta
-						stopAutoplay();
-					} else {
-						fullGallery.classList.remove("opacity-100");
-						fullGallery.classList.add("opacity-0");
-						fullGallery.addEventListener(
-							"transitionend",
-							function handler() {
-								fullGallery.classList.add("hidden");
-								fullGallery.removeEventListener("transitionend", handler);
-							},
-							{ once: true },
-						);
-						viewAllBtn.textContent = "🖼️ Ver todas las obras";
-						if (current === "home") startAutoplay();
-					}
-				});
+			
 			});
 			// -------------------------------------------------------
 			// LIGHTBOX
