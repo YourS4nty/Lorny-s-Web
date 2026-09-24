@@ -4,7 +4,7 @@ Bienvenido al sitio web oficial de **Lornychi**, una streamer, Vtuber e ilustrad
 Este portafolio fue creado para presentar su trabajo artístico, horarios de streams, comunidad y contenido multimedia de forma visual, dinámica y profesional.
 
 <p align="center">
-  <img src="public/avatar.webp" alt="Avatar Lornychi" width="150" />
+  <img src="public/lornychi-avatar.webp" alt="Avatar Lornychi" width="150" />
 </p>
 
 ---
